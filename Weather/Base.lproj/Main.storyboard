@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="Psv-PG-VQN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="Psv-PG-VQN" customClass="TodayWeatherTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Psv-PG-VQN" id="xXz-3d-1xI">
@@ -76,8 +76,15 @@
                                                 <constraint firstItem="hC1-xR-KrG" firstAttribute="leading" secondItem="q5h-Hh-yjO" secondAttribute="trailing" constant="10" id="vQP-bf-KXj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="a0g-sZ-gxP" id="rcj-9a-7Gj"/>
+                                            <outlet property="iconImageView" destination="q5h-Hh-yjO" id="kqy-6r-Ys1"/>
+                                            <outlet property="locationLabel" destination="gFO-6e-Qqt" id="am9-6S-6ub"/>
+                                            <outlet property="temperatureLabel" destination="lR9-bj-E1j" id="8xW-8F-LUU"/>
+                                            <outlet property="weatherLabel" destination="cFA-5S-R79" id="vBM-Ef-acR"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="7ch-hz-jps">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="7ch-hz-jps" customClass="OtherDaysWeatherTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7ch-hz-jps" id="L4Y-2N-WLU">
@@ -118,8 +125,17 @@
                                                 <constraint firstItem="0cp-AN-o7U" firstAttribute="top" secondItem="L4Y-2N-WLU" secondAttribute="topMargin" constant="5" id="oxF-jJ-Ruz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImageView" destination="0cp-AN-o7U" id="eUt-lc-qs9"/>
+                                            <outlet property="temperatureLabel" destination="nh1-TO-pcX" id="ChU-fu-ptv"/>
+                                            <outlet property="weatherLabel" destination="QrF-SB-YVG" id="A5W-T6-SD3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="8WM-GR-BQG"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="yAF-2C-ugd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,10 +147,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="AXv-Lq-a2H" id="vNc-MV-jcY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2.3999999999999999" y="62.518740629685162"/>
+            <point key="canvasLocation" x="-385" y="18"/>
         </scene>
     </scenes>
 </document>

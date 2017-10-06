@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WeatherViewController.swift
 //  Weather
 //
 //  Created by Narine Balasanyan on 10/6/17.
@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class WeatherViewController: UIViewController
+{
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
