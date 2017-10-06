@@ -10,8 +10,9 @@ import Foundation
 
 let baseUrl = "https://samples.openweathermap.org/data/2.5/forecast/daily?"
 let unitsUrl = "&cnt=7&appid="
-let apiKey = "e6767eda53e08f245fbf4abe1dd2be29"
+let apiKey = "303ba3f387712add367a04d4d3110cbc"
 
 //https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=7&appid=b1b15e88fa797225412429c1c50c122a1
 
+//https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=7&appid=e6767eda53e08f245fbf4abe1dd2be29
 

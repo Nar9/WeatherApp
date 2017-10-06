@@ -13,11 +13,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate
 {
     // IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    var shouldUpdateLocation = true
     
     // Properties
     let locationManager = CLLocationManager()
-    var latitude: Double?
-    var longitude: Double?
+    var latitude: Float = 0
+    var longitude: Float = 0
     var weather: WeatherManager!
     
     override func viewDidLoad() {
@@ -34,11 +35,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate
     
     // Finding user location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue = manager.location!.coordinate
-        latitude = locValue.latitude
-        longitude = locValue.longitude
-        tableView.reloadData()
-        locationManager.stopUpdatingLocation()
+        if self.shouldUpdateLocation {
+            let locValue = manager.location!.coordinate
+            latitude = Float(locValue.latitude)
+            longitude = Float(locValue.longitude)
+            tableView.reloadData()
+            self.shouldUpdateLocation = false
+            locationManager.stopUpdatingLocation()
+        }
     }
 
 }
@@ -54,15 +58,12 @@ extension WeatherViewController: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "todayWeatherCell") as? TodayWeatherTableViewCell
-            if let lat = latitude, let lon = longitude {
-                cell?.weather = WeatherManager(lat: lat, lon: lon, index: indexPath.row)
-            }
+             cell?.weather = WeatherManager(lat: self.latitude, lon: self.longitude, index: indexPath.row)
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "otherDaysWeatherCell") as? OtherDaysWeatherTableViewCell
-            if let lat = latitude, let lon = longitude {
-                cell?.weather = WeatherManager(lat: lat, lon: lon, index: indexPath.row)
-            }
+            cell?.weather = WeatherManager(lat: self.longitude, lon: self.longitude, index: indexPath.row)
+
             return cell!
         }
     }

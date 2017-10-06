@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TodayWeatherTableViewCell: UITableViewCell
 {
@@ -24,16 +25,30 @@ class TodayWeatherTableViewCell: UITableViewCell
     }
     
     func updateUI() {
-        weather?.downloadWeatherDetails { () -> () in
-//            self.iconImageView.image = UIImage(named: (self.weather?.weather?.icon)!)
-            self.weatherLabel.text = self.weather?.weather?.weather
-            let maxTemp = self.weather?.weather?.maxTemp ?? ""
-            let minTemp = self.weather?.weather?.minTemp ?? ""
-            self.temperatureLabel.text = "Max \(maxTemp)) °C, Min \(minTemp) °C"
-            let city = self.weather?.weather?.cityName ?? ""
-            let country = self.weather?.weather?.country ?? ""
-            self.locationLabel.text = "\(city), " + "\(country)"
-            self.dateLabel.text = self.weather?.weather?.date
-        }
+        self.weather?.saveWeatherDetails()
+        let realm = try! Realm()
+        let savedWeather = realm.objects(WeatherRealm.self).first
+        
+        self.iconImageView.image = UIImage(named: (savedWeather?.icon)!)
+        self.weatherLabel.text = savedWeather?.weather
+        let maxTemp = savedWeather?.maxTemp ?? ""
+        let minTemp = savedWeather?.minTemp ?? ""
+        self.temperatureLabel.text = "Max \(maxTemp) °C, Min \(minTemp) °C"
+        let city = savedWeather?.cityName ?? ""
+        let country = savedWeather?.country ?? ""
+        self.locationLabel.text = "\(city), " + "\(country)"
+        self.dateLabel.text = savedWeather?.date
+        
+        //        weather?.downloadWeatherDetails { () -> () in
+        ////            self.iconImageView.image = UIImage(named: (self.weather?.weather?.icon)!)
+        //            self.weatherLabel.text = self.weather?.weather?.weather
+        //            let maxTemp = self.weather?.weather?.maxTemp ?? ""
+        //            let minTemp = self.weather?.weather?.minTemp ?? ""
+        //            self.temperatureLabel.text = "Max \(maxTemp)) °C, Min \(minTemp) °C"
+        //            let city = self.weather?.weather?.cityName ?? ""
+        //            let country = self.weather?.weather?.country ?? ""
+        //            self.locationLabel.text = "\(city), " + "\(country)"
+        //            self.dateLabel.text = self.weather?.weather?.date
+        //        }
     }
 }
